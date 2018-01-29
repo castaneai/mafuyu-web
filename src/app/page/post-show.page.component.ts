@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlatformLocation } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 
 import {PostService} from '../post.service';
@@ -15,6 +16,7 @@ export class PostShowPageComponent implements OnInit {
     post: Post;
 
     constructor(
+        private platformLocation: PlatformLocation,
         private route: ActivatedRoute,
         private meta: Meta,
         private postService: PostService,
@@ -35,6 +37,8 @@ export class PostShowPageComponent implements OnInit {
 
     setMeta(post: Post) {
         this.meta.addTags([
+            {name: "og:type", content: "article"},
+            {name: "og:url", content: window.location.origin + this.platformLocation.pathname},
             {name: "og:title", content: post.title},
             {name: "og:image", content: post.thumbnail_url},
             {name: "og:description", content: post.tags.join(' ')},
