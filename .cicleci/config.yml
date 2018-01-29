@@ -3,12 +3,12 @@ jobs:
   deploy:
     working_directory: /tmp/mafuyu-web
     docker:
-      - image: node:9
+      - image: circleci/node:latest
     stees:
       - checkout
       - run:
           name: Install firebase-tools
-          command: npm install
+          command: yarn install
       - run:
           name: Deploy master to Firebase hosting
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
