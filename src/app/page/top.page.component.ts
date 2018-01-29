@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { TagService } from '../tag.service';
 import { Post } from '../post';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 
@@ -19,12 +20,13 @@ import { environment } from '../../environments/environment';
 })
 export class TopPageComponent implements OnInit {
 
-    postCount: number;
     searchKeyword = new FormControl();
     suggestTagInfos: TagInfo[] = [];
     posts: Post[] = [];
 
     constructor(
+        private router: Router,
+        private route: ActivatedRoute,
         private postService: PostService,
         private tagService: TagService,
     ) { }
@@ -38,12 +40,14 @@ export class TopPageComponent implements OnInit {
                     .then(tagInfos => this.suggestTagInfos = tagInfos);
             });
 
-        this.postService
-            .getPostCount()
-            .then(count => this.postCount = count);
+        const q = this.route.snapshot.queryParamMap.get('q');
+        if (q) {
+            this.searchPost(q);
+        }
     }
 
     searchPost(keyword: string) {
+        this.router.navigate(['/'], {queryParams: {q: keyword}});
         this.postService.searchPost(keyword)
             .then(posts => this.posts = posts);
     }

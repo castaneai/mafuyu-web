@@ -1,8 +1,9 @@
-<div *ngIf="post">
-    <h2>{{ post.title }}</h2>
-    <h3>tags</h3>
-    <ul>
-        <li *ngFor="let tag of post.tags">{{ tag }}</li>
+<div class="post" *ngIf="post">
+    <ul class="tags">
+        <li *ngFor="let tag of post.tags"><a routerLink="/" [queryParams]="{'q': tag}">{{ tag }}</a></li>
     </ul>
-    <img [src]="post.pages[0].content_url">
+
+    <div class="contents">
+        <img [src]="post.pages[0].content_url">
+    </div>
 </div>

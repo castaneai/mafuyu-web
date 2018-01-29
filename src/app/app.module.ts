@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatGridListModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TopPageComponent } from './page/top.page.component';
@@ -28,6 +28,7 @@ import { TagService } from './tag.service';
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatGridListModule,
   ],
   providers: [
     PostService,

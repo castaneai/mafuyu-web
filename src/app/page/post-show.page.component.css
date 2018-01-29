@@ -1,0 +1,20 @@
+.post {
+    display: flex;
+}
+
+.tags {
+    flex: 1;
+}
+
+.tags li {
+    list-style: none;
+}
+
+.contents {
+    flex: 3;
+}
+
+.contents img {
+    max-width: 100%;
+    height: auto;
+}
