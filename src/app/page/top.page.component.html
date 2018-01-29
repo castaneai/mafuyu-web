@@ -1,0 +1,4 @@
+<input type="text" placeholder="pantsu" />
+<div *ngIf="postCount" class="nekomimi">
+    <img *ngFor="let d of postCount.toString(10).split('')" [src]="'/assets/nekomimi/' + d + '.png'" alt="">
+</div>
