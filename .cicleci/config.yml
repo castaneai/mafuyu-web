@@ -1,8 +1,20 @@
 version: 2
 jobs:
-   build:
-     docker:
-       - image: circleci/node:latest
-     steps:
-       - checkout
-       - run: echo "hello world"
+  build:
+    working_directory: /tmp/mafuyu-web
+    docker:
+      - image: circleci/node:8
+
+    steps:
+      - checkout
+      - run:
+          name: System information
+          command: |
+            echo "Node $(node -v)"
+            echo "Yarn v$(yarn --version)"
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Deploy to Firebase hosting
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
