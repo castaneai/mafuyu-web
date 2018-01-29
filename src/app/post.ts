@@ -1,3 +1,6 @@
+import { environment } from '../environments/environment';
+
+
 export class Post {
     id: number;
     title: string;

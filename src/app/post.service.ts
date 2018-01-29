@@ -15,6 +15,10 @@ interface ICountPostResponse {
     count : number;
 }
 
+interface ISearchPostResponse {
+    posts: Post[];
+}
+
 
 @Injectable()
 export class PostService {
@@ -28,10 +32,17 @@ export class PostService {
             .toPromise();
     }
 
-    getPost(id: string): Promise<Post> {
+    getPost(id: number): Promise<Post> {
         return this.httpClient
             .get<IGetPostResponse>(`${environment.apiUrl}/post/${id}`)
             .map(res => res.post)
             .toPromise()
+    }
+
+    searchPost(keyword: string): Promise<Post[]> {
+        return this.httpClient
+            .get<ISearchPostResponse>(`${environment.apiUrl}/post?q=${keyword}`)
+            .map(res => res.posts)
+            .toPromise();
     }
 }

@@ -1,0 +1,8 @@
+<div *ngIf="post">
+    <h2>{{ post.title }}</h2>
+    <h3>tags</h3>
+    <ul>
+        <li *ngFor="let tag of post.tags">{{ tag }}</li>
+    </ul>
+    <img [src]="post.pages[0].content_url">
+</div>

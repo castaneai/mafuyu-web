@@ -1,4 +1,23 @@
-<input type="text" placeholder="pantsu" />
+<!-- search form -->
+<form>
+    <mat-form-field>
+        <input #keyword type="text" placeholder="pantsu" matInput [formControl]="searchKeyword" [matAutocomplete]="auto" (keyup.enter)="searchPost(keyword.value)">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let tagInfo of suggestTagInfos" [value]="tagInfo.tag">
+                {{ tagInfo.tag }} ({{ tagInfo.post_count }})
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+<!-- nekomimi kauntah -->
 <div *ngIf="postCount" class="nekomimi">
     <img *ngFor="let d of postCount.toString(10).split('')" [src]="'/assets/nekomimi/' + d + '.png'" alt="">
+</div>
+
+<!-- posts -->
+<div>
+    <ul>
+        <li *ngFor="let post of posts"><a routerLink="/post/{{ post.id }}"><img [src]="post.thumbnail_url" /></a></li>
+    </ul>
 </div>
