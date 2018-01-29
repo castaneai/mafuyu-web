@@ -11,5 +11,8 @@ jobs:
           name: Install dependencies
           command: yarn install
       - run:
+          name: Build app
+          command: yarn build
+      - run:
           name: Deploy to Firebase hosting
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+          command: ./node_modules/.bin/firebase deploy --project $FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN
