@@ -4,7 +4,7 @@ jobs:
     working_directory: /tmp/mafuyu-web
     docker:
       - image: circleci/node:latest
-    stees:
+    steps:
       - checkout
       - run:
           name: Install firebase-tools
