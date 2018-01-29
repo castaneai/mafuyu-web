@@ -1,23 +1,8 @@
-version: 2.0
+version: 2
 jobs:
-  deploy:
-    working_directory: /tmp/mafuyu-web
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - run:
-          name: Install firebase-tools
-          command: yarn install
-      - run:
-          name: Deploy master to Firebase hosting
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
-
-workflows:
-  version: 2
-
-  deploy:
-    jobs:
-      - deploy:
-        filters:
-          only: master
+   build:
+     docker:
+       - image: circleci/node:latest
+     steps:
+       - checkout
+       - run: echo "hello world"
