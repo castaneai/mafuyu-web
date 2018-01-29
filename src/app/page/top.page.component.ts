@@ -19,10 +19,10 @@ import { environment } from '../../environments/environment';
 })
 export class TopPageComponent implements OnInit {
 
-    private postCount: number;
-    private searchKeyword = new FormControl();
-    private suggestTagInfos: TagInfo[] = [];
-    private posts: Post[] = [];
+    postCount: number;
+    searchKeyword = new FormControl();
+    suggestTagInfos: TagInfo[] = [];
+    posts: Post[] = [];
 
     constructor(
         private postService: PostService,

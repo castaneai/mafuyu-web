@@ -11,7 +11,7 @@ import { Post } from '../post';
 })
 export class PostShowPageComponent implements OnInit {
 
-    private post: Post;
+    post: Post;
 
     constructor(
         private route: ActivatedRoute,

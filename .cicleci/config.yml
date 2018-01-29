@@ -1,0 +1,23 @@
+version: 2.0
+jobs:
+  deploy:
+    working_directory: /tmp/mafuyu-web
+    docker:
+      - image: node:alpine
+    stees:
+      - checkout
+      - run:
+          name: Install firebase-tools
+          command: npm install
+      - run:
+          name: Deploy master to Firebase hosting
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+workflows:
+  version: 2
+
+  deploy:
+    jobs:
+      - deploy:
+        filters:
+          only: master
