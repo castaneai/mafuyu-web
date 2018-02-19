@@ -43,6 +43,7 @@ export class TopPageComponent implements OnInit {
             thumbnailsMargin: 0,
             thumbnailsSwipe: true,
             thumbnailMargin: 0,
+            thumbnailsMoveSize: 4,
 
             preview: false,
         },
