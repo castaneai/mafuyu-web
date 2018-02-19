@@ -1,6 +1,6 @@
 import { Component, OnInit, keyframes } from '@angular/core';
 
-import {PostService} from '../post.service';
+import { PostService } from '../post.service';
 import { FormControl } from '@angular/forms';
 import { TagInfo } from '../tag';
 
@@ -19,7 +19,6 @@ import { environment } from '../../environments/environment';
     styleUrls: ['top.page.component.css'],
 })
 export class TopPageComponent implements OnInit {
-
     searchKeyword = new FormControl();
     suggestTagInfos: TagInfo[] = [];
     posts: Post[] = [];
@@ -29,26 +28,25 @@ export class TopPageComponent implements OnInit {
         private route: ActivatedRoute,
         private postService: PostService,
         private tagService: TagService,
-    ) { }
+    ) {}
 
     ngOnInit() {
-        this.searchKeyword.valueChanges
-            .debounceTime(400)
-            .subscribe(keyword => {
-                this.tagService
-                    .getTagInfos(keyword)
-                    .then(tagInfos => this.suggestTagInfos = tagInfos);
-            });
+        this.searchKeyword.valueChanges.debounceTime(400).subscribe(keyword => {
+            this.tagService
+                .getTagInfos(keyword)
+                .then(tagInfos => (this.suggestTagInfos = tagInfos));
+        });
 
         const q = this.route.snapshot.queryParamMap.get('q');
-        if (q) {
+        if (q !== null) {
             this.searchPost(q);
         }
     }
 
     searchPost(keyword: string) {
-        this.router.navigate(['/'], {queryParams: {q: keyword}});
-        this.postService.searchPost(keyword)
-            .then(posts => this.posts = posts);
+        this.router.navigate(['/'], { queryParams: { q: keyword } });
+        this.postService
+            .searchPost(keyword)
+            .then(posts => (this.posts = posts));
     }
 }
