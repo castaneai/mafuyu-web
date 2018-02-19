@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { Component, OnInit, keyframes } from '@angular/core';
 
 import { PostService } from '../post.service';
@@ -13,6 +14,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 
+import {
+    NgxGalleryOptions,
+    NgxGalleryImage,
+    NgxGalleryAnimation,
+    NgxGalleryImageSize,
+} from 'ngx-gallery';
+
 @Component({
     selector: 'app-top',
     templateUrl: 'top.page.component.html',
@@ -22,6 +30,25 @@ export class TopPageComponent implements OnInit {
     searchKeyword = new FormControl();
     suggestTagInfos: TagInfo[] = [];
     posts: Post[] = [];
+
+    galleryOptions: NgxGalleryOptions[] = [
+        {
+            width: '100%',
+            height: '100%',
+
+            imageSwipe: true,
+            imageSize: NgxGalleryImageSize.Contain,
+            imageAnimation: NgxGalleryAnimation.Slide,
+
+            thumbnailsMargin: 0,
+            thumbnailsSwipe: true,
+            thumbnailMargin: 0,
+
+            preview: false,
+        },
+    ];
+    galleryImages: NgxGalleryImage[] = [];
+    galleryVisible: boolean = false;
 
     constructor(
         private router: Router,
@@ -48,5 +75,26 @@ export class TopPageComponent implements OnInit {
         this.postService
             .searchPost(keyword)
             .then(posts => (this.posts = posts));
+    }
+
+    viewPost(post: Post) {
+        const startIndex = this.posts.findIndex(p => p.id === post.id);
+        this.galleryOptions[0].startIndex = startIndex;
+        this.galleryImages = this.posts.map(p => this.postToGalleryImage(p));
+        this.galleryVisible = true;
+    }
+
+    closeGallery() {
+        this.galleryVisible = false;
+    }
+
+    private postToGalleryImage(post: Post): NgxGalleryImage {
+        return {
+            small: post.thumbnail_url,
+            medium: post.pages[0].content_url,
+            big: post.pages[0].content_url,
+            url: `/post/${post.id}`,
+            description: post.tags.join(' '),
+        };
     }
 }

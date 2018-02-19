@@ -13,8 +13,16 @@
 <!-- posts -->
 <ul class="posts">
     <li class="post" *ngFor="let post of posts">
-        <a routerLink="/post/{{ post.id }}">
+        <a (click)="viewPost(post)">
             <img [src]="post.thumbnail_url" />
         </a>
     </li>
 </ul>
+
+<!-- gallery -->
+<div class="gallery-container" *ngIf="galleryVisible">
+    <button class="close-button" (click)="closeGallery()">
+        <i class="fa fa-close"></i>
+    </button>
+    <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+</div>
