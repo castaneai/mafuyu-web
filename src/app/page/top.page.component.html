@@ -12,9 +12,10 @@
 
 <!-- posts -->
 <ul class="posts">
-    <li class="post" *ngFor="let post of posts">
+    <li class="post" *lazyFor="let post of posts, withHeight 150">
         <a (click)="viewPost(post)">
-            <img [lazyLoad]="post.thumbnail_url" [offset]="150" />
+            <img [defaultImage]="'https://placeholdit.co//i/150x150?&bg=efefef&fc=cacaca&text=loading'" [lazyLoad]="post.thumbnail_url"
+                [offset]="150" />
         </a>
     </li>
 </ul>

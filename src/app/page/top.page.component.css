@@ -17,16 +17,22 @@
 
 .posts .post {
     list-style: none;
+    margin: 0;
+    padding: 0;
     flex: 1;
-}
-
-.post img {
-    transition: opacity 0.2s;
-    opacity: 0;
+    flex-basis: 150px;
 }
 
 .post img.ng-lazyloaded {
-    opacity: 1;
+    animation: fadein 0.4s;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .gallery-container {
