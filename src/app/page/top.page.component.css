@@ -20,6 +20,15 @@
     flex: 1;
 }
 
+.post img {
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.post img.ng-lazyloaded {
+    opacity: 1;
+}
+
 .gallery-container {
     background: rgba(0, 0, 0, 0.6);
     position: fixed;

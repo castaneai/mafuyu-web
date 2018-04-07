@@ -4577,6 +4577,10 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
+ng-lazyload-image@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/ng-lazyload-image/-/ng-lazyload-image-3.4.2.tgz#0654d750185105045111b089a3f9ee2d3044f1bc"
+
 ngx-gallery@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/ngx-gallery/-/ngx-gallery-4.3.0.tgz#e0654e5f5ad4032aa71bd07911843ba21d4ddf7c"

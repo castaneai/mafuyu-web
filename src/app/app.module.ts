@@ -16,6 +16,7 @@ import { PostService } from './post.service';
 import { AppRoutingModule } from './app.routing.module';
 import { TagService } from './tag.service';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
     declarations: [AppComponent, TopPageComponent, PostShowPageComponent],
@@ -30,6 +31,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
         MatAutocompleteModule,
         MatGridListModule,
         NgxGalleryModule,
+        LazyLoadImageModule,
     ],
     providers: [PostService, TagService],
     bootstrap: [AppComponent],

@@ -14,7 +14,7 @@
 <ul class="posts">
     <li class="post" *ngFor="let post of posts">
         <a (click)="viewPost(post)">
-            <img [src]="post.thumbnail_url" />
+            <img [lazyLoad]="post.thumbnail_url" [offset]="150" />
         </a>
     </li>
 </ul>
