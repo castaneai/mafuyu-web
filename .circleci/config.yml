@@ -9,9 +9,11 @@ jobs:
       - checkout
       - restore_cache:
           key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache_functions:
+          key: mafuyu-web-functions-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
       - run:
           name: Install dependencies
-          command: yarn install
+          command: yarn install && cd functions && yarn install
       - run:
           name: Build app
           command: yarn build
@@ -19,6 +21,11 @@ jobs:
           key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - /tmp/mafuyu-web/node_modules
+            - /tmp/mafuyu-web/.cache/yarn
+      - save_cache_functions:
+          key: mafuyu-web-functions-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - /tmp/mafuyu-web/functions/node_modules
             - /tmp/mafuyu-web/.cache/yarn
       - run:
           name: Deploy to Firebase hosting
