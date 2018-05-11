@@ -18,15 +18,16 @@ $ yarn install
 
 ```
 # development with angular
-$ ng serve
+$ yarn start
 
 # development with cloud functions
+$ yarn build
 $ firebase serve --only hosting,functions
 ```
 
 ## Deploy
 
 ```
-$ ng build --prod
+$ yarn build
 $ firebase deploy
 ```

@@ -46,3 +46,4 @@ Thumbs.db
 # Firebase
 firebase-debug.log
 .firebaserc
+functions/index.html
