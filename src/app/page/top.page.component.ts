@@ -56,7 +56,7 @@ export class TopPageComponent implements OnInit {
         private route: ActivatedRoute,
         private postService: PostService,
         private tagService: TagService,
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.searchKeyword.valueChanges.debounceTime(400).subscribe(keyword => {
@@ -95,7 +95,7 @@ export class TopPageComponent implements OnInit {
             medium: post.pages[0].content_url,
             big: post.pages[0].content_url,
             url: `/post/${post.id}`,
-            description: post.tags.join(' '),
+            description: post.tags ? post.tags.join(' ') : '',
         };
     }
 }
