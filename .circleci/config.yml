@@ -8,9 +8,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - restore_cache_functions:
-          key: mafuyu-web-functions-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+          key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "functions/yarn.lock" }}
       - run:
           name: Install dependencies
           command: yarn install && cd functions && yarn install
@@ -18,13 +16,9 @@ jobs:
           name: Build app
           command: yarn build
       - save_cache:
-          key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: mafuyu-web-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "functions/yarn.lock" }}
           paths:
             - /tmp/mafuyu-web/node_modules
-            - /tmp/mafuyu-web/.cache/yarn
-      - save_cache_functions:
-          key: mafuyu-web-functions-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
             - /tmp/mafuyu-web/functions/node_modules
             - /tmp/mafuyu-web/.cache/yarn
       - run:
