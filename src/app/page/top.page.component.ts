@@ -1,13 +1,15 @@
+
+import { debounceTime } from 'rxjs/operators';
 import 'hammerjs';
-import { Component, OnInit, keyframes } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PostService } from '../post.service';
 import { FormControl } from '@angular/forms';
 import { TagInfo } from '../tag';
 
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
+
+
+
 import { TagService } from '../tag.service';
 import { Post } from '../post';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -59,7 +61,7 @@ export class TopPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.searchKeyword.valueChanges.debounceTime(400).subscribe(keyword => {
+        this.searchKeyword.valueChanges.pipe(debounceTime(400)).subscribe(keyword => {
             this.tagService
                 .getTagInfos(keyword)
                 .then(tagInfos => (this.suggestTagInfos = tagInfos));
