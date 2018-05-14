@@ -4,30 +4,30 @@ web frontend for mafuyu
 
 ## Requirements
 
-```
-$ yarn global add @angular/cli firebase-tools
+```bash
+yarn global add @angular/cli firebase-tools
 ```
 
 ## Install
 
-```
-$ yarn install
+```bash
+yarn install
 ```
 
 ## Development
 
-```
+```bash
 # development with angular
-$ yarn start
+yarn start
 
 # development with cloud functions
-$ yarn build
-$ firebase serve --only hosting,functions
+yarn build
+firebase serve --only hosting,functions
 ```
 
 ## Deploy
 
-```
-$ yarn build
-$ firebase deploy
+```bash
+yarn build
+firebase deploy
 ```

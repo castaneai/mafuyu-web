@@ -1,7 +1,7 @@
 
-import {debounceTime} from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import 'hammerjs';
-import { Component, OnInit, keyframes } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PostService } from '../post.service';
 import { FormControl } from '@angular/forms';

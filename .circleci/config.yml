@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  deploy:
     working_directory: /tmp/mafuyu-web
     docker:
       - image: circleci/node:latest
@@ -24,3 +24,13 @@ jobs:
       - run:
           name: Deploy to Firebase hosting
           command: ./node_modules/.bin/firebase deploy --project $FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN
+
+workflows:
+  version: 2
+
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
