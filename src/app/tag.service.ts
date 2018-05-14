@@ -1,8 +1,10 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+
+
 
 import { environment } from '../environments/environment';
 import { Post } from './post';
@@ -19,8 +21,8 @@ export class TagService {
 
     getTagInfos(keyword: string): Promise<TagInfo[]> {
         return this.httpClient
-            .get<IGetTagInfosResponse>(`${environment.apiUrl}/tag?q=${keyword}`)
-            .map(res => res.tags)
+            .get<IGetTagInfosResponse>(`${environment.apiUrl}/tag?q=${keyword}`).pipe(
+            map(res => res.tags))
             .toPromise();
     }
 }
