@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PlatformLocation } from '@angular/common';
 
 import { PostService } from '../post.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +14,6 @@ export class PostShowPageComponent implements OnInit {
     post: Post;
 
     constructor(
-        private platformLocation: PlatformLocation,
         private route: ActivatedRoute,
         private postService: PostService,
     ) { }
