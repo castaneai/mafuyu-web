@@ -47,7 +47,11 @@ import { GalleryPostThumbnailComponent } from './gallery-post-thumbnail.componen
         MatIconModule,
 
         // for gallery
-        GalleryModule.forRoot(),
+        GalleryModule.forRoot({
+            counter: false,
+            thumbWidth: 80,
+            thumbHeight: 150,
+        }),
         LightboxModule.forRoot({
             panelClass: 'fullscreen'
         }),

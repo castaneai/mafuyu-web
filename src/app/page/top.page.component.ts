@@ -11,10 +11,13 @@ import { TagService } from '../tag.service';
 import { Post } from '../post';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { GalleryItem, Gallery } from '@ngx-gallery/core';
+import { GalleryItem, Gallery, GalleryRef } from '@ngx-gallery/core';
 import { Lightbox } from '@ngx-gallery/lightbox';
 import { GalleryPostComponent } from '../gallery-post.component';
 import { GalleryPostThumbnailComponent } from '../gallery-post-thumbnail.component';
+
+const GALLERY_LOAD_COUNT = 31;
+const GALLERY_LOAD_RANGE = Math.floor(GALLERY_LOAD_COUNT / 2);
 
 @Component({
     selector: 'app-top',
@@ -22,9 +25,11 @@ import { GalleryPostThumbnailComponent } from '../gallery-post-thumbnail.compone
     styleUrls: ['top.page.component.css'],
 })
 export class TopPageComponent implements OnInit {
+
     searchKeyword = new FormControl();
     suggestTagInfos: TagInfo[] = [];
     posts: Post[] = [];
+    currentIndex: number = 0;
 
     constructor(
         private router: Router,
@@ -57,7 +62,6 @@ export class TopPageComponent implements OnInit {
 
     renderPosts(posts: Post[]) {
         this.posts = posts;
-        this.gallery.ref('lightbox').load(posts.map(this.postToGalleryItem));
     }
 
     postToGalleryItem(post: Post): GalleryItem {
@@ -68,8 +72,18 @@ export class TopPageComponent implements OnInit {
         };
     }
 
+    getGalleryRef(): GalleryRef {
+        return this.gallery.ref('lightbox');
+    }
+
     viewPost(post: Post) {
-        const startIndex = this.posts.findIndex(p => p.id === post.id);
-        this.lightbox.open(startIndex, 'lightbox');
+        const totalIndex = this.posts.findIndex(p => p.id === post.id);
+        const loadPosts = this.posts.slice(
+            Math.max(0, totalIndex - GALLERY_LOAD_RANGE),
+            Math.min(totalIndex + GALLERY_LOAD_RANGE + 1, this.posts.length)
+        );
+        this.getGalleryRef().load(loadPosts.map(this.postToGalleryItem));
+        const loadIndex = loadPosts.findIndex(p => p.id == post.id);
+        this.lightbox.open(loadIndex, 'lightbox');
     }
 }
