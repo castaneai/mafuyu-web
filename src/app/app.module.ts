@@ -7,6 +7,8 @@ import {
     MatAutocompleteModule,
     MatInputModule,
     MatGridListModule,
+    MatListModule,
+    MatIconModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -32,8 +34,10 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
         MatGridListModule,
         NgxGalleryModule,
         LazyLoadImageModule,
+        MatListModule,
+        MatIconModule,
     ],
     providers: [PostService, TagService],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

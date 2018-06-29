@@ -1,9 +1,15 @@
 <div class="post" *ngIf="post">
-    <ul class="tags">
-        <li *ngFor="let tag of post.tags"><a routerLink="/" [queryParams]="{'q': tag}">{{ tag }}</a></li>
-    </ul>
 
     <div class="contents">
-        <img [src]="post.pages[0].content_url">
+        <a *ngFor="let page of post.pages" [href]="page.content_url" target="_blank">
+            <img [src]="page.content_url">
+        </a>
     </div>
+
+    <mat-list class="tags">
+        <a mat-list-item *ngFor="let tag of post.tags" routerLink="/" [queryParams]="{'q': tag}">
+            <mat-icon>label</mat-icon>
+            <p style="margin-left: 1em">{{ tag }}</p>
+        </a>
+    </mat-list>
 </div>
