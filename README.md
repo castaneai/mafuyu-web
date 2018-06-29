@@ -19,6 +19,7 @@ yarn install
 ```bash
 # development with angular
 yarn start
+open http://localhost:4200
 
 # development with cloud functions
 yarn build
