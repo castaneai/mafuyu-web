@@ -7,21 +7,14 @@ import { PostService } from '../post.service';
 import { FormControl } from '@angular/forms';
 import { TagInfo } from '../tag';
 
-
-
-
 import { TagService } from '../tag.service';
 import { Post } from '../post';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { environment } from '../../environments/environment';
-
-import {
-    NgxGalleryOptions,
-    NgxGalleryImage,
-    NgxGalleryAnimation,
-    NgxGalleryImageSize,
-} from 'ngx-gallery';
+import { GalleryItem, Gallery } from '@ngx-gallery/core';
+import { Lightbox } from '@ngx-gallery/lightbox';
+import { GalleryPostComponent } from '../gallery-post.component';
+import { GalleryPostThumbnailComponent } from '../gallery-post-thumbnail.component';
 
 @Component({
     selector: 'app-top',
@@ -33,31 +26,13 @@ export class TopPageComponent implements OnInit {
     suggestTagInfos: TagInfo[] = [];
     posts: Post[] = [];
 
-    galleryOptions: NgxGalleryOptions[] = [
-        {
-            width: '100%',
-            height: '100%',
-
-            imageSwipe: true,
-            imageSize: NgxGalleryImageSize.Contain,
-            imageAnimation: NgxGalleryAnimation.Slide,
-
-            thumbnailsMargin: 0,
-            thumbnailsSwipe: true,
-            thumbnailMargin: 0,
-            thumbnailsMoveSize: 4,
-
-            preview: false,
-        },
-    ];
-    galleryImages: NgxGalleryImage[] = [];
-    galleryVisible: boolean = false;
-
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private postService: PostService,
         private tagService: TagService,
+        private gallery: Gallery,
+        private lightbox: Lightbox,
     ) { }
 
     ngOnInit() {
@@ -77,27 +52,24 @@ export class TopPageComponent implements OnInit {
         this.router.navigate(['/'], { queryParams: { q: keyword } });
         this.postService
             .searchPost(keyword)
-            .then(posts => (this.posts = posts));
+            .then(ps => this.renderPosts(ps));
+    }
+
+    renderPosts(posts: Post[]) {
+        this.posts = posts;
+        this.gallery.ref('lightbox').load(posts.map(this.postToGalleryItem));
+    }
+
+    postToGalleryItem(post: Post): GalleryItem {
+        return {
+            data: post,
+            component: GalleryPostComponent,
+            thumbComponent: GalleryPostThumbnailComponent,
+        };
     }
 
     viewPost(post: Post) {
         const startIndex = this.posts.findIndex(p => p.id === post.id);
-        this.galleryOptions[0].startIndex = startIndex;
-        this.galleryImages = this.posts.map(p => this.postToGalleryImage(p));
-        this.galleryVisible = true;
-    }
-
-    closeGallery() {
-        this.galleryVisible = false;
-    }
-
-    private postToGalleryImage(post: Post): NgxGalleryImage {
-        return {
-            small: post.thumbnail_url,
-            medium: post.pages[0].content_url,
-            big: post.pages[0].content_url,
-            url: `/post/${post.id}`,
-            description: post.tags ? post.tags.join(' ') : '',
-        };
+        this.lightbox.open(startIndex, 'lightbox');
     }
 }

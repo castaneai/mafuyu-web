@@ -19,11 +19,3 @@
         </a>
     </li>
 </ul>
-
-<!-- gallery -->
-<div class="gallery-container" *ngIf="galleryVisible">
-    <button class="close-button" (click)="closeGallery()">
-        <i class="fa fa-close"></i>
-    </button>
-    <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-</div>

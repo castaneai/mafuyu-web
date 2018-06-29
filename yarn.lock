@@ -96,9 +96,9 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.0.1.tgz#dde0ef5b1b3ce9989136ca1a73af1de404141bfd"
+"@angular/cdk@^6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-6.3.1.tgz#88f65710b3f9fdc64c956a2862076eeb4e7a4d57"
   dependencies:
     tslib "^1.7.1"
 
@@ -264,6 +264,18 @@
     "@angular-devkit/core" "0.6.1"
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
+
+"@ngx-gallery/core@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@ngx-gallery/core/-/core-2.2.1.tgz#e9cfe0ee87d1aedff13247fcf2a904aaeecf6c72"
+  dependencies:
+    tslib "^1.7.1"
+
+"@ngx-gallery/lightbox@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@ngx-gallery/lightbox/-/lightbox-2.2.1.tgz#4afb3216f6dd5768c753feaf8490741fe1bb62a9"
+  dependencies:
+    tslib "^1.7.1"
 
 "@schematics/angular@0.6.1":
   version "0.6.1"
@@ -4637,10 +4649,6 @@ nested-error-stacks@^1.0.0:
 ng-lazyload-image@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/ng-lazyload-image/-/ng-lazyload-image-3.4.2.tgz#0654d750185105045111b089a3f9ee2d3044f1bc"
-
-ngx-gallery@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/ngx-gallery/-/ngx-gallery-4.3.0.tgz#e0654e5f5ad4032aa71bd07911843ba21d4ddf7c"
 
 no-case@^2.2.0:
   version "2.3.2"
