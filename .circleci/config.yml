@@ -3,7 +3,7 @@ jobs:
   deploy:
     working_directory: /tmp/mafuyu-web
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:8
 
     steps:
       - checkout
