@@ -4,14 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "firebase": "firebase",
     "start": "ng serve",
     "build": "ng build --prod && cp dist/index.html functions/index.html",
+    "deploy": "ng build --prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
-  },
-  "engines": {
-    "node": "8"
   },
   "prettier": {
     "tabWidth": 4,

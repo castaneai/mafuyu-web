@@ -20,15 +20,10 @@ yarn install
 # development with angular
 yarn start
 open http://localhost:4200
-
-# development with cloud functions
-yarn build
-firebase serve --only hosting,functions
 ```
 
 ## Deploy
 
 ```bash
-yarn build
-firebase deploy
+yarn deploy
 ```

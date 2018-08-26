@@ -8,10 +8,6 @@
         ],
         "rewrites": [
             {
-                "source": "/post/**",
-                "function": "mafuyuOgp"
-            },
-            {
                 "source": "**",
                 "destination": "/index.html"
             }
