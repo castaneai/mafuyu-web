@@ -1,29 +1,26 @@
 # mafuyu-web
 
-web frontend for mafuyu
+## Requirements 
 
-## Requirements
+- Node.js
+- Firebase CLI Tools
 
-```bash
-yarn global add @angular/cli firebase-tools
-```
+## Initialize
 
-## Install
-
-```bash
-yarn install
+```sh
+yarn
+cp .env.example .env
+vi .env
 ```
 
 ## Development
 
-```bash
-# development with angular
-yarn start
-open http://localhost:4200
+```sh
+export FIRESTORE_EMULATOR_HOST=localhost:8080
+firebase emulatros:start
+yarn dev
 ```
 
-## Deploy
+## Testing 
 
-```bash
-yarn deploy
-```
+TODO

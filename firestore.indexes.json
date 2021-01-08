@@ -1,0 +1,25 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "mafuyuPosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "tags",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "mafuyuPosts",
+      "fieldPath": "imageUrls",
+      "indexes": []
+    }
+  ]
+}
