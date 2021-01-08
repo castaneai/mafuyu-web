@@ -1,0 +1,10 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /mafuyuPosts/{postid} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+  }
+}

@@ -1,9 +1,0 @@
-<div class="container">
-    <!-- nekomimi kauntah -->
-    <div *ngIf="postCount" class="nekomimi">
-        <a href="/">
-            <img *ngFor="let d of postCount.toString(10).split('')" [src]="'/assets/nekomimi/' + d + '.png'" alt="">
-        </a>
-    </div>
-    <router-outlet></router-outlet>
-</div>
